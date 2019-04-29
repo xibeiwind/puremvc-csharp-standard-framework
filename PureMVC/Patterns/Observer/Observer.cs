@@ -11,13 +11,13 @@ using PureMVC.Interfaces;
 namespace PureMVC.Patterns.Observer
 {
     /// <summary>
-    /// A base <c>IObserver</c> implementation.
+    ///     A base <c>IObserver</c> implementation.
     /// </summary>
     /// <remarks>
     ///     <para>
     ///         An <c>Observer</c> is an object that encapsulates information
-    ///         about an interested object with a method that should 
-    ///         be called when a particular <c>INotification</c> is broadcast. 
+    ///         about an interested object with a method that should
+    ///         be called when a particular <c>INotification</c> is broadcast.
     ///     </para>
     ///     <para>
     ///         In PureMVC, the <c>Observer</c> class assumes these responsibilities:
@@ -29,16 +29,16 @@ namespace PureMVC.Patterns.Observer
     ///         </list>
     ///     </para>
     /// </remarks>
-    /// <seealso cref="PureMVC.Core.View"/>
-    /// <seealso cref="PureMVC.Patterns.Observer.Notification"/>
-    public class Observer: IObserver
+    /// <seealso cref="PureMVC.Core.View" />
+    /// <seealso cref="PureMVC.Patterns.Observer.Notification" />
+    public class Observer : IObserver
     {
         /// <summary>
-        /// Constructor.
+        ///     Constructor.
         /// </summary>
         /// <remarks>
         ///     <para>
-        ///         The notification method on the interested object should take 
+        ///         The notification method on the interested object should take
         ///         one parameter of type <c>INotification</c>
         ///     </para>
         /// </remarks>
@@ -51,7 +51,7 @@ namespace PureMVC.Patterns.Observer
         }
 
         /// <summary>
-        /// Notify the interested object.
+        ///     Notify the interested object.
         /// </summary>
         /// <param name="Notification">the <c>INotification</c> to pass to the interested object's notification method.</param>
         public virtual void NotifyObserver(INotification Notification)
@@ -60,7 +60,7 @@ namespace PureMVC.Patterns.Observer
         }
 
         /// <summary>
-        /// Compare an object to the notification context. 
+        ///     Compare an object to the notification context.
         /// </summary>
         /// <param name="obj">the object to compare</param>
         /// <returns>indicating if the object and the notification context are the same</returns>

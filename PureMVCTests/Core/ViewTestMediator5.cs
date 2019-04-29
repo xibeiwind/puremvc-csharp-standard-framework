@@ -11,27 +11,28 @@ using PureMVC.Patterns.Mediator;
 namespace PureMVC.Core
 {
     /// <summary>
-    /// A Mediator class used by ViewTest.
+    ///     A Mediator class used by ViewTest.
     /// </summary>
     public class ViewTestMediator5 : Mediator
     {
         // The Mediator name
-        public static new string NAME = "ViewTestMediator5";
+        public new static string NAME = "ViewTestMediator5";
 
         // Constructor
-        public ViewTestMediator5(object view): base(NAME, view)
+        public ViewTestMediator5(object view) : base(NAME, view)
         {
         }
-    
+
+        public ViewTest ViewTest => (ViewTest) ViewComponent;
+
         public override string[] ListNotificationInterests()
         {
-            return new string[1] { ViewTest.NOTE5 };
+            return new string[1] {ViewTest.NOTE5};
         }
+
         public override void HandleNotification(INotification notification)
         {
             ViewTest.counter++;
         }
-
-        public ViewTest ViewTest => (ViewTest) ViewComponent;
     }
 }

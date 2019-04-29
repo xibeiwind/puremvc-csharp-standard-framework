@@ -11,15 +11,15 @@ using PureMVC.Interfaces;
 namespace PureMVC.Patterns.Mediator
 {
     /// <summary>
-    /// Test the PureMVC Mediator class.
+    ///     Test the PureMVC Mediator class.
     /// </summary>
-    /// <seealso cref="IMediator"/>
-    /// <seealso cref="Mediator"/>
+    /// <seealso cref="IMediator" />
+    /// <seealso cref="Mediator" />
     [TestClass]
     public class MediatorTest
     {
         /// <summary>
-        /// Tests getting the name using Mediator class accessor method. 
+        ///     Tests getting the name using Mediator class accessor method.
         /// </summary>
         [TestMethod]
         public void TestNameAccessor()
@@ -32,7 +32,7 @@ namespace PureMVC.Patterns.Mediator
         }
 
         /// <summary>
-        /// Tests getting the name using Mediator class accessor method. 
+        ///     Tests getting the name using Mediator class accessor method.
         /// </summary>
         [TestMethod]
         public void TestViewAccessor()

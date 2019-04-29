@@ -11,14 +11,14 @@ using PureMVC.Patterns.Command;
 namespace PureMVC.Core
 {
     /// <summary>
-    /// A SimpleCommand subclass used by ControllerTest.
+    ///     A SimpleCommand subclass used by ControllerTest.
     /// </summary>
-    /// <seealso cref="ControllerTest"/>
-    /// <seealso cref="ControllerTestVO"/>
-    public class ControllerTestCommand2: SimpleCommand
+    /// <seealso cref="ControllerTest" />
+    /// <seealso cref="ControllerTestVO" />
+    public class ControllerTestCommand2 : SimpleCommand
     {
         /// <summary>
-        /// Fabricate a result by multiplying the input by 2 and adding to the existing result
+        ///     Fabricate a result by multiplying the input by 2 and adding to the existing result
         ///     <para>
         ///         This tests accumulation effect that would show if the command were executed more than once.
         ///     </para>
@@ -26,11 +26,10 @@ namespace PureMVC.Core
         /// <param name="notification">the note carrying the ControllerTestVO</param>
         public override void Execute(INotification notification)
         {
-            ControllerTestVO vo = (ControllerTestVO)notification.Body;
+            var vo = (ControllerTestVO) notification.Body;
 
             // Fabricate a result
-            vo.result = vo.result + (2 * vo.input);
+            vo.result = vo.result + 2 * vo.input;
         }
-
     }
 }

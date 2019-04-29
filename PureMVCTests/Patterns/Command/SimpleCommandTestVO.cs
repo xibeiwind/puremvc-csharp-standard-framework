@@ -8,10 +8,10 @@
 namespace PureMVC.Patterns.Command
 {
     /// <summary>
-    /// A utility class used by SimpleCommandTest.
+    ///     A utility class used by SimpleCommandTest.
     /// </summary>
-    /// <seealso cref="SimpleCommandTest"/>
-    /// <seealso cref="SimpleCommandTestCommand"/>
+    /// <seealso cref="SimpleCommandTest" />
+    /// <seealso cref="SimpleCommandTestCommand" />
     public class SimpleCommandTestVO
     {
         public SimpleCommandTestVO(int input)

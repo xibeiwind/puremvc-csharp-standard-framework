@@ -12,19 +12,19 @@ using PureMVC.Patterns.Proxy;
 namespace PureMVC.Core
 {
     /// <summary>
-    /// Test the PureMVC Model class.
+    ///     Test the PureMVC Model class.
     /// </summary>
     [TestClass]
     public class ModelTest
     {
         /// <summary>
-        /// Tests the Model Singleton Factory Method 
+        ///     Tests the Model Singleton Factory Method
         /// </summary>
         [TestMethod]
         public void TestGetInstance()
         {
             // Test Factory Method
-            IModel model = Model.GetInstance(() => new Model());
+            var model = Model.GetInstance(() => new Model());
 
             // test assertions
             Assert.IsNotNull(model, "Expecting instance not null");
@@ -32,24 +32,24 @@ namespace PureMVC.Core
         }
 
         /// <summary>
-        /// Tests the proxy registration and retrieval methods.
+        ///     Tests the proxy registration and retrieval methods.
         /// </summary>
         /// <remarks>
         ///     <para>
         ///         Tests <c>registerProxy</c> and <c>retrieveProxy</c> in the same test.
         ///         These methods cannot currently be tested separately
         ///         in any meaningful way other than to show that the
-        ///         methods do not throw exception when called. 
+        ///         methods do not throw exception when called.
         ///     </para>
         /// </remarks>
         [TestMethod]
         public void TestRegisterAndRetrieveProxy()
         {
             // register a proxy and retrieve it.
-            IModel model = Model.GetInstance(() => new Model());
-            model.RegisterProxy(new Proxy("colors", new string[3]{ "red", "green", "blue" }));
-            IProxy proxy = model.RetrieveProxy("colors");
-            string[] data = (string[])proxy.Data;
+            var model = Model.GetInstance(() => new Model());
+            model.RegisterProxy(new Proxy("colors", new string[3] {"red", "green", "blue"}));
+            var proxy = model.RetrieveProxy("colors");
+            var data = (string[]) proxy.Data;
 
             // test assertions
             Assert.IsNotNull(data, "Expecting data not null");
@@ -61,32 +61,32 @@ namespace PureMVC.Core
         }
 
         /// <summary>
-        /// Tests the proxy removal method.
+        ///     Tests the proxy removal method.
         /// </summary>
         [TestMethod]
         public void TestRegisterAndRemoveProxy()
         {
             // register a proxy, remove it, then try to retrieve it
-            IModel model = Model.GetInstance(() => new Model());
-            model.RegisterProxy(new Proxy("sizes", new int[3]{ 7, 13, 21 }));
-            IProxy removedProxy = model.RemoveProxy("sizes");
+            var model = Model.GetInstance(() => new Model());
+            model.RegisterProxy(new Proxy("sizes", new int[3] {7, 13, 21}));
+            var removedProxy = model.RemoveProxy("sizes");
 
             Assert.IsTrue(removedProxy.ProxyName == "sizes", "Expecting removedProxy.ProxyName == 'sizes'");
-            IProxy proxy = model.RetrieveProxy("sizes");
+            var proxy = model.RetrieveProxy("sizes");
 
             // test assertions
             Assert.IsNull(proxy, "Expecting proxy is null");
         }
 
         /// <summary>
-        /// Tests the hasProxy Method
+        ///     Tests the hasProxy Method
         /// </summary>
         [TestMethod]
         public void TestHasProxy()
         {
             // register a proxy
-            IModel model = Model.GetInstance(() => new Model());
-            IProxy proxy = new Proxy("aces", new string[] { "clubs", "spades", "hearts", "diamonds" });
+            var model = Model.GetInstance(() => new Model());
+            IProxy proxy = new Proxy("aces", new[] {"clubs", "spades", "hearts", "diamonds"});
             model.RegisterProxy(proxy);
 
             // assert that the model.hasProxy method returns true
@@ -102,26 +102,28 @@ namespace PureMVC.Core
         }
 
         /// <summary>
-        /// Tests that the Model calls the onRegister and onRemove methods
+        ///     Tests that the Model calls the onRegister and onRemove methods
         /// </summary>
         [TestMethod]
         public void TestOnRegisterAndOnRemove()
         {
             // Get the Singleton View instance
-            IModel model = Model.GetInstance(() => new Model());
+            var model = Model.GetInstance(() => new Model());
 
             // Create and register the test mediator
             IProxy proxy = new ModelTestProxy();
             model.RegisterProxy(proxy);
 
             // assert that onRegsiter was called, and the proxy responded by setting its data accordingly
-            Assert.IsTrue(proxy.Data.ToString() == ModelTestProxy.ON_REGISTER_CALLED, "Expecting proxy.Data.ToString() == ModelTestProxy.ON_REGISTER_CALLED");
+            Assert.IsTrue(proxy.Data.ToString() == ModelTestProxy.ON_REGISTER_CALLED,
+                "Expecting proxy.Data.ToString() == ModelTestProxy.ON_REGISTER_CALLED");
 
             // Remove the component
             model.RemoveProxy(ModelTestProxy.NAME);
 
             // assert that onRemove was called, and the proxy responded by setting its data accordingly
-            Assert.IsTrue(proxy.Data.ToString() == ModelTestProxy.ON_REMOVE_CALLED, "Expecting proxy.Data.ToString() == ModelTestProxy.ON_REMOVE_CALLED");
+            Assert.IsTrue(proxy.Data.ToString() == ModelTestProxy.ON_REMOVE_CALLED,
+                "Expecting proxy.Data.ToString() == ModelTestProxy.ON_REMOVE_CALLED");
         }
     }
 }

@@ -10,16 +10,16 @@ using PureMVC.Interfaces;
 namespace PureMVC.Patterns.Observer
 {
     /// <summary>
-    /// A Base <c>INotifier</c> implementation.
+    ///     A Base <c>INotifier</c> implementation.
     /// </summary>
     /// <remarks>
     ///     <para>
-    ///         <c>MacroCommand, Command, Mediator</c> and <c>Proxy</c> 
+    ///         <c>MacroCommand, Command, Mediator</c> and <c>Proxy</c>
     ///         all have a need to send <c>Notifications</c>.
     ///     </para>
     ///     <para>
     ///         The <c>INotifier</c> interface provides a common method called
-    ///         <c>sendNotification</c> that relieves implementation code of 
+    ///         <c>sendNotification</c> that relieves implementation code of
     ///         the necessity to actually construct <c>Notifications</c>.
     ///     </para>
     ///     <para>
@@ -31,19 +31,25 @@ namespace PureMVC.Patterns.Observer
     ///         access to the facade anyway.
     ///     </para>
     /// </remarks>
-    /// <seealso cref="PureMVC.Patterns.Proxy.Proxy"/>
-    /// <seealso cref="PureMVC.Patterns.Facade.Facade"/>
-    /// <seealso cref="PureMVC.Patterns.Mediator.Mediator"/>
-    /// <seealso cref="PureMVC.Patterns.Command.MacroCommand"/>
-    /// <seealso cref="PureMVC.Patterns.Command.SimpleCommand"/>
+    /// <seealso cref="PureMVC.Patterns.Proxy.Proxy" />
+    /// <seealso cref="PureMVC.Patterns.Facade.Facade" />
+    /// <seealso cref="PureMVC.Patterns.Mediator.Mediator" />
+    /// <seealso cref="PureMVC.Patterns.Command.MacroCommand" />
+    /// <seealso cref="PureMVC.Patterns.Command.SimpleCommand" />
     public class Notifier : INotifier
     {
+        /// <summary>Return the Singleton Facade instance</summary>
+        protected IFacade Facade
+        {
+            get { return Patterns.Facade.Facade.GetInstance(() => new Facade.Facade()); }
+        }
+
         /// <summary>
-        /// Create and send an <c>INotification</c>.
+        ///     Create and send an <c>INotification</c>.
         /// </summary>
         /// <remarks>
         ///     <para>
-        ///         Keeps us from having to construct new INotification 
+        ///         Keeps us from having to construct new INotification
         ///         instances in our implementation code.
         ///     </para>
         /// </remarks>
@@ -53,15 +59,6 @@ namespace PureMVC.Patterns.Observer
         public virtual void SendNotification(string notificationName, object body = null, string type = null)
         {
             Facade.SendNotification(notificationName, body, type);
-        }
-
-        /// <summary>Return the Singleton Facade instance</summary>
-        protected IFacade Facade
-        {
-            get
-            {
-                return Patterns.Facade.Facade.GetInstance(() => new Facade.Facade());
-            }
         }
     }
 }

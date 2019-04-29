@@ -8,16 +8,16 @@
 namespace PureMVC.Interfaces
 {
     /// <summary>
-    /// A Base <c>INotifier</c> implementation.
+    ///     A Base <c>INotifier</c> implementation.
     /// </summary>
     /// <remarks>
     ///     <para>
-    ///         <c>MacroCommand, Command, Mediator</c> and <c>Proxy</c> 
+    ///         <c>MacroCommand, Command, Mediator</c> and <c>Proxy</c>
     ///         all have a need to send <c>Notifications</c>.
     ///     </para>
     ///     <para>
     ///         The <c>INotifier</c> interface provides a common method called
-    ///         <c>sendNotification</c> that relieves implementation code of 
+    ///         <c>sendNotification</c> that relieves implementation code of
     ///         the necessity to actually construct <c>Notifications</c>.
     ///     </para>
     ///     <para>
@@ -29,16 +29,16 @@ namespace PureMVC.Interfaces
     ///         access to the facade anyway.
     ///     </para>
     /// </remarks>
-    /// <seealso cref="IFacade"/>
-    /// <seealso cref="INotification"/>
+    /// <seealso cref="IFacade" />
+    /// <seealso cref="INotification" />
     public interface INotifier
     {
         /// <summary>
-        /// Send a <c>INotification</c>.
+        ///     Send a <c>INotification</c>.
         /// </summary>
         /// <remarks>
         ///     <para>
-        ///         Convenience method to prevent having to construct new 
+        ///         Convenience method to prevent having to construct new
         ///         notification instances in our implementation code.
         ///     </para>
         /// </remarks>

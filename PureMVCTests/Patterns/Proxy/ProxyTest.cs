@@ -11,15 +11,15 @@ using PureMVC.Interfaces;
 namespace PureMVC.Patterns.Proxy
 {
     /// <summary>
-    /// Test the PureMVC Proxy class.
+    ///     Test the PureMVC Proxy class.
     /// </summary>
-    /// <seealso cref="IProxy"/>
-    /// <seealso cref="Proxy"/>
+    /// <seealso cref="IProxy" />
+    /// <seealso cref="Proxy" />
     [TestClass]
     public class ProxyTest
     {
         /// <summary>
-        /// Tests getting the name using Proxy class accessor method. Setting can only be done in constructor.
+        ///     Tests getting the name using Proxy class accessor method. Setting can only be done in constructor.
         /// </summary>
         [TestMethod]
         public void TestNameAccessor()
@@ -32,17 +32,17 @@ namespace PureMVC.Patterns.Proxy
         }
 
         /// <summary>
-        /// Tests setting and getting the data using Proxy class accessor methods.
+        ///     Tests setting and getting the data using Proxy class accessor methods.
         /// </summary>
         [TestMethod]
         public void TestDataAccessor()
         {
             // Create a new Proxy and use accessors to set the data
-            IProxy proxy = new PureMVC.Patterns.Proxy.Proxy("colors");
-            proxy.Data = new string[3] { "red", "green", "blue" };
+            IProxy proxy = new Proxy("colors");
+            proxy.Data = new string[3] {"red", "green", "blue"};
 
             // test assertions
-            string[] data = (string[])proxy.Data;
+            var data = (string[]) proxy.Data;
             Assert.IsTrue(data.Length == 3, "Expecting data.length == 3");
             Assert.IsTrue(data[0] == "red", "Expecting data[0] == 'red'");
             Assert.IsTrue(data[1] == "green", "Expecting data[1] == 'green'");
@@ -50,16 +50,16 @@ namespace PureMVC.Patterns.Proxy
         }
 
         /// <summary>
-        /// Tests setting the name and body using the Notification class Constructor.
+        ///     Tests setting the name and body using the Notification class Constructor.
         /// </summary>
         [TestMethod]
         public void TestConstructor()
         {
             // Create a new Proxy using the Constructor to set the name and data
-            IProxy proxy = new Proxy("colors", new string[3] { "red", "green", "blue" });
+            IProxy proxy = new Proxy("colors", new string[3] {"red", "green", "blue"});
 
             // test assertions
-            string[] data = (string[])proxy.Data;
+            var data = (string[]) proxy.Data;
             Assert.IsNotNull(proxy, "Expecting proxy not null");
             Assert.IsTrue(proxy.ProxyName == "colors", "Expecting proxy.ProxyName == 'colors'");
             Assert.IsTrue(data.Length == 3, "Expecting data.Count == 3");

@@ -10,7 +10,7 @@ using System;
 namespace PureMVC.Interfaces
 {
     /// <summary>
-    /// The interface definition for a PureMVC Observer.
+    ///     The interface definition for a PureMVC Observer.
     /// </summary>
     /// <remarks>
     ///     <para>
@@ -23,13 +23,13 @@ namespace PureMVC.Interfaces
     ///         </list>
     ///     </para>
     ///     <para>
-    ///         PureMVC does not rely upon underlying event models such 
-    ///         as the one provided with Flash, and ActionScript 3 does 
+    ///         PureMVC does not rely upon underlying event models such
+    ///         as the one provided with Flash, and ActionScript 3 does
     ///         not have an inherent event model.
     ///     </para>
     ///     <para>
-    ///         The Observer Pattern as implemented within PureMVC exists 
-    ///         to support event-driven communication between the 
+    ///         The Observer Pattern as implemented within PureMVC exists
+    ///         to support event-driven communication between the
     ///         application and the actors of the MVC triad.
     ///     </para>
     ///     <para>
@@ -45,12 +45,12 @@ namespace PureMVC.Interfaces
     ///         as a subclass of <c>Notification</c>.
     ///     </para>
     /// </remarks>
-    /// <seealso cref="IView"/>
-    /// <seealso cref="INotification"/>
+    /// <seealso cref="IView" />
+    /// <seealso cref="INotification" />
     public interface IObserver
     {
         /// <summary>
-        /// Set the notification method (callback) method of the interested object
+        ///     Set the notification method (callback) method of the interested object
         /// </summary>
         /// <remarks>
         ///     <para>
@@ -60,18 +60,18 @@ namespace PureMVC.Interfaces
         Action<INotification> NotifyMethod { set; }
 
         /// <summary>
-        /// Set the notification context (this) of the interested object
+        ///     Set the notification context (this) of the interested object
         /// </summary>
         object NotifyContext { set; }
 
         /// <summary>
-        /// Notify the interested object.
+        ///     Notify the interested object.
         /// </summary>
         /// <param name="notification">the <c>INotification</c> to pass to the interested object's notification method</param>
         void NotifyObserver(INotification notification);
 
         /// <summary>
-        /// Compare the given object to the notificaiton context object.
+        ///     Compare the given object to the notificaiton context object.
         /// </summary>
         /// <param name="obj">the object to compare.</param>
         /// <returns>indicating if the notification context and the object are the same.</returns>

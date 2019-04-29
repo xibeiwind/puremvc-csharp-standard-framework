@@ -8,16 +8,16 @@
 namespace PureMVC.Patterns.Command
 {
     /// <summary>
-    /// A utility class used by MacroCommandTest.
+    ///     A utility class used by MacroCommandTest.
     /// </summary>
-    /// <seealso cref="MacroCommandTest"/>
-    /// <seealso cref="MacroCommandTestCommand"/>
-    /// <seealso cref="MacroCommandTestSub1Command"/>
-    /// <seealso cref="MacroCommandTestSub2Command"/>
+    /// <seealso cref="MacroCommandTest" />
+    /// <seealso cref="MacroCommandTestCommand" />
+    /// <seealso cref="MacroCommandTestSub1Command" />
+    /// <seealso cref="MacroCommandTestSub2Command" />
     public class MacroCommandTestVO
     {
         /// <summary>
-        /// Constructor.
+        ///     Constructor.
         /// </summary>
         /// <param name="input">input the number to be fed to the MacroCommandTestCommand</param>
         public MacroCommandTestVO(int input)

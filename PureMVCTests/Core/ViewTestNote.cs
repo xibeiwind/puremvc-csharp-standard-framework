@@ -11,9 +11,9 @@ using PureMVC.Patterns.Observer;
 namespace PureMVC.Core
 {
     /// <summary>
-    /// A Notification class used by ViewTest.
+    ///     A Notification class used by ViewTest.
     /// </summary>
-    /// <seealso cref="ViewTest"/>
+    /// <seealso cref="ViewTest" />
     public class ViewTestNote : Notification
     {
         public const string NAME = "ViewTestNote";

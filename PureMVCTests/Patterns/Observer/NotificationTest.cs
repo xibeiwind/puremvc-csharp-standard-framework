@@ -11,14 +11,14 @@ using PureMVC.Interfaces;
 namespace PureMVC.Patterns.Observer
 {
     /// <summary>
-    /// Test the PureMVC Notification class.
+    ///     Test the PureMVC Notification class.
     /// </summary>
-    /// <seealso cref="Notification"/>
+    /// <seealso cref="Notification" />
     [TestClass]
     public class NotificationTest
     {
         /// <summary>
-        /// Tests setting and getting the name using Notification class accessor methods.
+        ///     Tests setting and getting the name using Notification class accessor methods.
         /// </summary>
         [TestMethod]
         public void TestNameAccessors()
@@ -31,7 +31,7 @@ namespace PureMVC.Patterns.Observer
         }
 
         /// <summary>
-        /// Tests setting and getting the body using Notification class accessor methods.
+        ///     Tests setting and getting the body using Notification class accessor methods.
         /// </summary>
         [TestMethod]
         public void TestBodyAccessors()
@@ -41,11 +41,11 @@ namespace PureMVC.Patterns.Observer
             note.Body = 5;
 
             // test assertions
-            Assert.IsTrue((int)note.Body == 5, "Expecting (int) note.Body == 5");
+            Assert.IsTrue((int) note.Body == 5, "Expecting (int) note.Body == 5");
         }
 
         /// <summary>
-        /// Tests setting the name and body using the Notification class Constructor.
+        ///     Tests setting the name and body using the Notification class Constructor.
         /// </summary>
         [TestMethod]
         public void TestConstructor()
@@ -55,19 +55,19 @@ namespace PureMVC.Patterns.Observer
 
             // test assertions
             Assert.IsTrue(note.Name == "TestNote", "Expecting note.Name == 'TestNote'");
-            Assert.IsTrue((int)note.Body == 5, "Expecting (int) note.Body == 5");
+            Assert.IsTrue((int) note.Body == 5, "Expecting (int) note.Body == 5");
             Assert.IsTrue(note.Type == "TestNoteType", "Expecting note.Type == 'TestNoteType'");
         }
 
         /// <summary>
-        /// Tests the toString method of the notification
+        ///     Tests the toString method of the notification
         /// </summary>
         [TestMethod]
         public void TestToString()
         {
             // Create a new Notification and use accessors to set the notification name 
             INotification note = new Notification("TestNote", "1,3,5", "TestType");
-            string ts = "Notification Name: TestNote\nBody:1,3,5\nType:TestType";
+            var ts = "Notification Name: TestNote\nBody:1,3,5\nType:TestType";
 
             // test assertions
             Assert.IsTrue(note.ToString() == ts, "Expecting note.TestToString() == '" + ts + "'");

@@ -12,16 +12,16 @@ using PureMVC.Interfaces;
 namespace PureMVC.Patterns.Observer
 {
     /// <summary>
-    /// Tests PureMVC Observer class.
+    ///     Tests PureMVC Observer class.
     /// </summary>
     /// <remarks>
     ///     <para>
     ///         Since the Observer encapsulates the interested object's
-    ///         callback information, there are no getters, only setters. 
+    ///         callback information, there are no getters, only setters.
     ///         It is, in effect write-only memory.
     ///     </para>
     ///     <para>
-    ///         Therefore, the only way to test it is to set the 
+    ///         Therefore, the only way to test it is to set the
     ///         notification method and context and call the notifyObserver
     ///         method.
     ///     </para>
@@ -30,14 +30,20 @@ namespace PureMVC.Patterns.Observer
     public class ObserverTest
     {
         /// <summary>
-        /// Tests observer class when initialized by accessor methods.
+        ///     A test variable that proves the notify method was
+        ///     executed with 'this' as its exectution context
+        /// </summary>
+        private int ObserverTestVar;
+
+        /// <summary>
+        ///     Tests observer class when initialized by accessor methods.
         /// </summary>
         [TestMethod]
         public void TestObserverAccessor()
         {
             // Create observer with null args, then
             // use accessors to set notification method and context
-            Observer observer = new Observer(null, null);
+            var observer = new Observer(null, null);
             observer.NotifyContext = this;
             observer.NotifyMethod = ObserverTestMethod;
 
@@ -47,7 +53,7 @@ namespace PureMVC.Patterns.Observer
             // successful notification will result in our local 
             // observerTestVar being set to the value we pass in 
             // on the note body.
-            Notification note = new Notification("ObserverTestNote", 10);
+            var note = new Notification("ObserverTestNote", 10);
             observer.NotifyObserver(note);
 
             // test assertions  
@@ -55,7 +61,7 @@ namespace PureMVC.Patterns.Observer
         }
 
         /// <summary>
-        /// Tests observer class when initialized by constructor.
+        ///     Tests observer class when initialized by constructor.
         /// </summary>
         [TestMethod]
         public void TestObserverConstructor()
@@ -77,7 +83,7 @@ namespace PureMVC.Patterns.Observer
         }
 
         /// <summary>
-        /// Tests the compareNotifyContext method of the Observer class
+        ///     Tests the compareNotifyContext method of the Observer class
         /// </summary>
         [TestMethod]
         public void TestCompareNotifyContext()
@@ -88,26 +94,22 @@ namespace PureMVC.Patterns.Observer
             var negTestObj = new object();
 
             // test assertions  			
-            Assert.IsTrue(observer.CompareNotifyContext(negTestObj) == false, "Expecting observer.compareNotifyContext(negTestObj) == false");
+            Assert.IsTrue(observer.CompareNotifyContext(negTestObj) == false,
+                "Expecting observer.compareNotifyContext(negTestObj) == false");
             Assert.IsTrue(observer.CompareNotifyContext(this), "Expecting observer.compareNotifyContext(this) == true");
-            Assert.IsTrue(observer.CompareNotifyContext(new WeakReference<object>(null)) == false, "Expecting garbage collected value (null) == false");
+            Assert.IsTrue(observer.CompareNotifyContext(new WeakReference<object>(null)) == false,
+                "Expecting garbage collected value (null) == false");
         }
 
         /// <summary>
-  		/// A test variable that proves the notify method was
-        /// executed with 'this' as its exectution context
-        /// </summary>
-        private int ObserverTestVar;
-
-        /// <summary>
-        /// A function that is used as the observer notification
-        /// method. It multiplies the input number by the 
-        /// observerTestVar value
+        ///     A function that is used as the observer notification
+        ///     method. It multiplies the input number by the
+        ///     observerTestVar value
         /// </summary>
         /// <param name="note">notification</param>
         public void ObserverTestMethod(INotification note)
         {
-            ObserverTestVar = (int)note.Body;
+            ObserverTestVar = (int) note.Body;
         }
     }
 }

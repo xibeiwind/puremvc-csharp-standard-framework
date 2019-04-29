@@ -11,23 +11,22 @@ using PureMVC.Patterns.Command;
 namespace PureMVC.Patterns.Facade
 {
     /// <summary>
-    /// A SimpleCommand subclass used by FacadeTest.
+    ///     A SimpleCommand subclass used by FacadeTest.
     /// </summary>
-    /// <seealso cref="FacadeTest"/>
-    /// <seealso cref="FacadeTestVO"/>
-    public class FacadeTestCommand: SimpleCommand
+    /// <seealso cref="FacadeTest" />
+    /// <seealso cref="FacadeTestVO" />
+    public class FacadeTestCommand : SimpleCommand
     {
         /// <summary>
-        /// Fabricate a result by multiplying the input by 2
+        ///     Fabricate a result by multiplying the input by 2
         /// </summary>
         /// <param name="notification">note the Notification carrying the FacadeTestVO</param>
         public override void Execute(INotification notification)
         {
-            FacadeTestVO vo = (FacadeTestVO)notification.Body;
+            var vo = (FacadeTestVO) notification.Body;
 
             // Fabricate a result
             vo.result = 2 * vo.input;
         }
-
     }
 }

@@ -7,13 +7,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using PureMVC.Interfaces;
 using PureMVC.Patterns.Observer;
 
 namespace PureMVC.Patterns.Command
 {
     /// <summary>
-    /// A base <c>ICommand</c> implementation that executes other <c>ICommand</c>s.
+    ///     A base <c>ICommand</c> implementation that executes other <c>ICommand</c>s.
     /// </summary>
     /// <remarks>
     ///     <para>
@@ -21,39 +22,43 @@ namespace PureMVC.Patterns.Command
     ///         <c>ICommand</c> Class references called <i>SubCommands</i>.
     ///     </para>
     ///     <para>
-    ///         When <c>execute</c> is called, the <c>MacroCommand</c> 
+    ///         When <c>execute</c> is called, the <c>MacroCommand</c>
     ///         instantiates and calls <c>execute</c> on each of its <i>SubCommands</i> turn.
     ///         Each <i>SubCommand</i> will be passed a reference to the original
-    ///         <c>INotification</c> that was passed to the <c>MacroCommand</c>'s 
+    ///         <c>INotification</c> that was passed to the <c>MacroCommand</c>'s
     ///         <c>execute</c> method.
     ///     </para>
     ///     <para>
     ///         Unlike <c>SimpleCommand</c>, your subclass
-    ///         should not override <c>execute</c>, but instead, should 
-    ///         override the <c>initializeMacroCommand</c> method, 
+    ///         should not override <c>execute</c>, but instead, should
+    ///         override the <c>initializeMacroCommand</c> method,
     ///         calling <c>addSubCommand</c> once for each <i>SubCommand</i>
     ///         to be executed.
     ///     </para>
     /// </remarks>
-    /// <seealso cref="PureMVC.Core.Controller"/>
-    /// <seealso cref="PureMVC.Patterns.Observer.Notification"/>
-    /// <seealso cref="PureMVC.Patterns.Command.SimpleCommand"/>
+    /// <seealso cref="PureMVC.Core.Controller" />
+    /// <seealso cref="PureMVC.Patterns.Observer.Notification" />
+    /// <seealso cref="PureMVC.Patterns.Command.SimpleCommand" />
     public class MacroCommand : Notifier, ICommand, INotifier
     {
+        /// <summary>List of subcommands</summary>
+        public IList<Func<ICommand>> subcommands;
+
         /// <summary>
-        /// Constructor.
+        ///     Constructor.
         /// </summary>
         /// <remarks>
         ///     <para>
-        ///         You should not need to define a constructor, 
+        ///         You should not need to define a constructor,
         ///         instead, override the <c>initializeMacroCommand</c>
         ///         method.
         ///     </para>
         ///     <para>
-        ///         If your subclass does define a constructor, be 
+        ///         If your subclass does define a constructor, be
         ///         sure to call <c>super()</c>.
         ///     </para>
         /// </remarks>
+        [SuppressMessage("ReSharper", "VirtualMemberCallInConstructor")]
         public MacroCommand()
         {
             subcommands = new List<Func<ICommand>>();
@@ -61,12 +66,33 @@ namespace PureMVC.Patterns.Command
         }
 
         /// <summary>
-        /// Initialize the <c>MacroCommand</c>.
+        ///     Execute this <c>MacroCommand</c>'s <i>SubCommands</i>.
         /// </summary>
         /// <remarks>
         ///     <para>
-        ///         In your subclass, override this method to 
-        ///         initialize the <c>MacroCommand</c>'s <i>SubCommand</i>  
+        ///         The <i>SubCommands</i> will be called in First In/First Out (FIFO)
+        ///         order.
+        ///     </para>
+        /// </remarks>
+        /// <param name="notification">the <c>INotification</c> object to be passsed to each <i>SubCommand</i>.</param>
+        public virtual void Execute(INotification notification)
+        {
+            while (subcommands.Count > 0)
+            {
+                var commandFunc = subcommands[0];
+                var commandInstance = commandFunc();
+                commandInstance.Execute(notification);
+                subcommands.RemoveAt(0);
+            }
+        }
+
+        /// <summary>
+        ///     Initialize the <c>MacroCommand</c>.
+        /// </summary>
+        /// <remarks>
+        ///     <para>
+        ///         In your subclass, override this method to
+        ///         initialize the <c>MacroCommand</c>'s <i>SubCommand</i>
         ///         list with <c>ICommand</c> class references like
         ///         this:
         ///     </para>
@@ -90,7 +116,7 @@ namespace PureMVC.Patterns.Command
         }
 
         /// <summary>
-        /// Add a <c>SubCommand</c>.
+        ///     Add a <c>SubCommand</c>.
         /// </summary>
         /// <remarks>
         ///     <para>
@@ -103,29 +129,5 @@ namespace PureMVC.Patterns.Command
         {
             subcommands.Add(commandFunc);
         }
-
-        /// <summary>
-        /// Execute this <c>MacroCommand</c>'s <i>SubCommands</i>.
-        /// </summary>
-        /// <remarks>
-        ///     <para>
-        ///         The <i>SubCommands</i> will be called in First In/First Out (FIFO)
-        ///         order.
-        ///     </para>
-        /// </remarks>
-        /// <param name="notification">the <c>INotification</c> object to be passsed to each <i>SubCommand</i>.</param>
-        public virtual void Execute(INotification notification)
-        {
-            while(subcommands.Count > 0)
-            {
-                Func<ICommand> commandFunc = subcommands[0];
-                ICommand commandInstance = commandFunc();
-                commandInstance.Execute(notification);
-                subcommands.RemoveAt(0);
-            }
-        }
-
-        /// <summary>List of subcommands</summary>
-        public IList<Func<ICommand>> subcommands;
     }
 }

@@ -11,13 +11,13 @@ using PureMVC.Patterns.Observer;
 namespace PureMVC.Patterns.Mediator
 {
     /// <summary>
-    /// A base <c>IMediator</c> implementation. 
+    ///     A base <c>IMediator</c> implementation.
     /// </summary>
-    /// <seealso cref="PureMVC.Core.View"/>
+    /// <seealso cref="PureMVC.Core.View" />
     public class Mediator : Notifier, IMediator, INotifier
     {
         /// <summary>
-        /// The name of the <c>Mediator</c>. 
+        ///     The name of the <c>Mediator</c>.
         /// </summary>
         /// <remarks>
         ///     <para>
@@ -29,19 +29,19 @@ namespace PureMVC.Patterns.Mediator
         public static string NAME = "Mediator";
 
         /// <summary>
-        /// Constructor.
+        ///     Constructor.
         /// </summary>
         /// <param name="mediatorName"></param>
         /// <param name="viewComponent"></param>
         public Mediator(string mediatorName, object viewComponent = null)
         {
-            MediatorName = mediatorName ?? Mediator.NAME;
+            MediatorName = mediatorName ?? NAME;
             ViewComponent = viewComponent;
         }
 
         /// <summary>
-        /// List the <c>INotification</c> names this
-        /// <c>Mediator</c> is interested in being notified of.
+        ///     List the <c>INotification</c> names this
+        ///     <c>Mediator</c> is interested in being notified of.
         /// </summary>
         /// <returns>the list of <c>INotification</c> names</returns>
         public virtual string[] ListNotificationInterests()
@@ -50,7 +50,7 @@ namespace PureMVC.Patterns.Mediator
         }
 
         /// <summary>
-        /// Handle <c>INotification</c>s.
+        ///     Handle <c>INotification</c>s.
         /// </summary>
         /// <remarks>
         ///     <para>
@@ -65,14 +65,14 @@ namespace PureMVC.Patterns.Mediator
         }
 
         /// <summary>
-        /// Called by the View when the Mediator is registered
+        ///     Called by the View when the Mediator is registered
         /// </summary>
         public virtual void OnRegister()
         {
         }
 
         /// <summary>
-        /// Called by the View when the Mediator is removed
+        ///     Called by the View when the Mediator is removed
         /// </summary>
         public virtual void OnRemove()
         {

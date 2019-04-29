@@ -10,13 +10,13 @@ using PureMVC.Patterns.Mediator;
 namespace PureMVC.Core
 {
     /// <summary>
-    /// A Mediator class used by ViewTest.
+    ///     A Mediator class used by ViewTest.
     /// </summary>
-    /// <seealso cref="ViewTest"/>
+    /// <seealso cref="ViewTest" />
     public class ViewTestMediator : Mediator
     {
         // The Mediator name
-        public static new string NAME = "ViewTestMediator";
+        public new static string NAME = "ViewTestMediator";
 
         // Constructor
         public ViewTestMediator(object viewComponent) : base(NAME, viewComponent)
@@ -27,7 +27,7 @@ namespace PureMVC.Core
         // in order to test removeMediator
         public override string[] ListNotificationInterests()
         {
-            return new string[3] { "ABC", "DEF", "GHI"};
+            return new string[3] {"ABC", "DEF", "GHI"};
         }
     }
 }

@@ -12,25 +12,25 @@ using PureMVC.Patterns.Observer;
 namespace PureMVC.Patterns.Command
 {
     /// <summary>
-    /// Test the PureMVC SimpleCommand class.
+    ///     Test the PureMVC SimpleCommand class.
     /// </summary>
-    /// <seealso cref="SimpleCommandTestVO"/>
-    /// <seealso cref="SimpleCommandTestCommand"/>
+    /// <seealso cref="SimpleCommandTestVO" />
+    /// <seealso cref="SimpleCommandTestCommand" />
     [TestClass]
     public class SimpleCommandTest
     {
         /// <summary>
-        /// Tests the <c>execute</c> method of a <c>SimpleCommand</c>.
+        ///     Tests the <c>execute</c> method of a <c>SimpleCommand</c>.
         /// </summary>
         /// <remarks>
         ///     <para>
-        ///         This test creates a new <c>Notification</c>, adding a 
-        ///         <c>SimpleCommandTestVO</c> as the body. 
+        ///         This test creates a new <c>Notification</c>, adding a
+        ///         <c>SimpleCommandTestVO</c> as the body.
         ///         It then creates a <c>SimpleCommandTestCommand</c> and invokes
         ///         its <c>execute</c> method, passing in the note.
         ///     </para>
         ///     <para>
-        ///         Success is determined by evaluating a property on the 
+        ///         Success is determined by evaluating a property on the
         ///         object that was passed on the Notification body, which will
         ///         be modified by the SimpleCommand
         ///     </para>
@@ -39,7 +39,7 @@ namespace PureMVC.Patterns.Command
         public void TestExecute()
         {
             // Create the VO
-            SimpleCommandTestVO vo = new SimpleCommandTestVO(5);
+            var vo = new SimpleCommandTestVO(5);
 
             // Create the Notification (notification)
             INotification note = new Notification("SimpleCommandTestNote", vo);

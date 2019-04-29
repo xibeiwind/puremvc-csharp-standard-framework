@@ -11,18 +11,20 @@ using PureMVC.Patterns.Mediator;
 namespace PureMVC.Core
 {
     /// <summary>
-    /// A Mediator class used by ViewTest.
+    ///     A Mediator class used by ViewTest.
     /// </summary>
-    /// <seealso cref="ViewTest"/>
+    /// <seealso cref="ViewTest" />
     public class ViewTestMediator3 : Mediator
     {
         // The Mediator name
-        public static new string NAME = "ViewTestMediator3";
+        public new static string NAME = "ViewTestMediator3";
 
         // Constructor
         public ViewTestMediator3(object viewComponent) : base(NAME, viewComponent)
         {
         }
+
+        public ViewTest ViewTest => (ViewTest) ViewComponent;
 
         // be sure that the mediator has some Observers created
         // in order to test removeMediator
@@ -35,7 +37,5 @@ namespace PureMVC.Core
         {
             ViewTest.lastNotification = notification.Name;
         }
-
-        public ViewTest ViewTest => (ViewTest)ViewComponent;
     }
 }

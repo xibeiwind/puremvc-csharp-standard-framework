@@ -8,23 +8,23 @@
 namespace PureMVC.Core
 {
     /// <summary>
-    /// A utility class used by ControllerTest.
+    ///     A utility class used by ControllerTest.
     /// </summary>
-    /// <seealso cref="ControllerTest"/>
-    /// <seealso cref="ControllerTestCommand"/>
+    /// <seealso cref="ControllerTest" />
+    /// <seealso cref="ControllerTestCommand" />
     public class ControllerTestVO
     {
+        public int input;
+
+        public int result;
+
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="input">the number to be fed to the ControllerTestCommand</param>
         public ControllerTestVO(int input)
         {
             this.input = input;
         }
-
-        public int input;
-
-        public int result;
     }
 }

@@ -9,7 +9,7 @@ using PureMVC.Patterns.Proxy;
 
 namespace PureMVC.Core
 {
-    public class ModelTestProxy: Proxy
+    public class ModelTestProxy : Proxy
     {
         public new const string NAME = "ModelTestProxy";
         public const string ON_REGISTER_CALLED = "onRegister Called";

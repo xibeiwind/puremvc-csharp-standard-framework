@@ -10,19 +10,19 @@ using PureMVC.Interfaces;
 namespace PureMVC.Patterns.Command
 {
     /// <summary>
-    /// A SimpleCommand subclass used by SimpleCommandTest.
+    ///     A SimpleCommand subclass used by SimpleCommandTest.
     /// </summary>
-    /// <seealso cref="SimpleCommandTest"/>
-    /// <seealso cref="SimpleCommandTestVO"/>
-    public class SimpleCommandTestCommand: SimpleCommand
+    /// <seealso cref="SimpleCommandTest" />
+    /// <seealso cref="SimpleCommandTestVO" />
+    public class SimpleCommandTestCommand : SimpleCommand
     {
         /// <summary>
-        /// Fabricate a result by multiplying the input by 2
+        ///     Fabricate a result by multiplying the input by 2
         /// </summary>
         /// <param name="note">event the <c>INotification</c> carrying the <c>SimpleCommandTestVO</c></param>
         public override void Execute(INotification note)
         {
-            SimpleCommandTestVO vo = (SimpleCommandTestVO)note.Body;
+            var vo = (SimpleCommandTestVO) note.Body;
 
             // Fabricate a result
             vo.Result = 2 * vo.Input;
