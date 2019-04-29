@@ -2,4 +2,7 @@
 # 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
 ################################################################################
 
-/.vs/PureMVC/v15
+/.vs/
+/**/[Oo]bj/
+/**/[Dd]ebug/
+/PureMVC.sln.DotSettings.user
